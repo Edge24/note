@@ -40,27 +40,24 @@ body{
 	background-color:rgb(255, 255, 255);
 }
 
-a img{
+a .float img{
     border-radius: 8px;
 }
 
 .float{
 	position:fixed;
 	width:65px;
-	height:80px;
-	bottom:40px;
+	height:65px;
+	bottom:60px;
 	right:40px;
   padding: 4px;
 	background-color:rgba(63, 59, 59, 0.326);
 	color:#FFF;
-	border-radius:10px;
+	border-radius:50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px rgb(0, 0, 0);
 }
 
-.my-float{
-	margin-top:22px;
-}
 .wrapper{
   margin: 50px;
   display: grid;
@@ -143,6 +140,7 @@ a img{
 .note .bottom-content{
   padding-top: 10px;
   border-top: 1px solid rgb(255, 255, 255);
+  background-color: rgba(220, 220, 220, 0);
 }
 .bottom-content span{
   color: #ffffff;
@@ -214,6 +212,7 @@ a img{
 .popup-box, .popup{
   opacity: 0;
   pointer-events: none;
+  border-radius: 30px;
   transition: all 0.25s ease;
 }
 .popup-box.show, .popup-box.show .popup{
@@ -225,14 +224,15 @@ a img{
 }
 .popup .content{
   border-radius: 5px;
-  background: rgba(142, 140, 140, 0.2);
-  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 30px;
   width: calc(100% - 15px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0);
 }
 .content header{
   padding: 15px 25px;
   border-bottom: 1px solid #ccc;
+  background-color: #12022400;
 }
 .content header p{
   font-size: 20px;
@@ -296,4 +296,25 @@ form button{
   .bottom-content .settings i{
     font-size: 17px;
   }
+}
+
+
+footer {
+  text-align: center;
+  padding: 3px;
+  color: white;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+}
+
+footer span{
+  color: aqua;
+}
+
+.credit{
+  text-align: center;
+  padding: 9px;
+  background-color: #000000;
 }
