@@ -40,23 +40,31 @@ body{
 	background-color:rgb(255, 255, 255);
 }
 
-a .float img{
-    border-radius: 8px;
-}
 
-.float{
+.float-note{
 	position:fixed;
 	width:65px;
 	height:65px;
-	bottom:60px;
-	right:40px;
+	bottom:70px;
+	right:30px;
   padding: 4px;
-	background-color:rgba(63, 59, 59, 0.326);
+  color: white;
+  background-color: #9292926a;
+  border: 1px solid #8787879c;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
-	box-shadow: 2px 2px 3px rgb(0, 0, 0);
 }
+
+.float-note svg{
+  margin-top: 12.6px;
+  margin-left: 1.5px;
+}
+
+.float-note:hover{
+  border: 1px solid aqua;
+}
+
 
 .wrapper{
   margin: 50px;
