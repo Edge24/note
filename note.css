@@ -41,27 +41,27 @@ body{
 }
 
 
-.float-note{
+a .float-note{
 	position:fixed;
 	width:65px;
 	height:65px;
 	bottom:70px;
 	right:30px;
-  padding: 4px;
-  color: white;
-  background-color: #9292926a;
-  border: 1px solid #8787879c;
+  	padding: 4px;
+  	color: white;
+  	background-color: #9292926a;
+  	border: 1px solid #8787879c;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
 }
 
-.float-note svg{
+a .float-note svg{
   margin-top: 12.6px;
   margin-left: 1.5px;
 }
 
-.float-note:hover{
+a .float-note:hover{
   border: 1px solid aqua;
 }
 
