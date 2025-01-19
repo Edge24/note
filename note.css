@@ -8,7 +8,7 @@
 }
 body{
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, #420101, #120224, rgb(0, 37, 37));
+  background-image: linear-gradient(to top, #170029, #090013, rgb(0, 6, 33));
   background-attachment: fixed;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
@@ -41,29 +41,32 @@ body{
 }
 
 
-a .float-note{
+
+
+.float-note{
 	position:fixed;
 	width:65px;
 	height:65px;
 	bottom:70px;
 	right:30px;
-  	padding: 4px;
-  	color: white;
-  	background-color: #9292926a;
-  	border: 1px solid #8787879c;
+  color: white;
+  background-color: #9292926a;
+  border: 1px solid #8787879c;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
 }
 
-a .float-note svg{
+.float-note svg{
   margin-top: 12.6px;
   margin-left: 1.5px;
 }
 
-a .float-note:hover{
+.float-note:hover{
   border: 1px solid aqua;
 }
+
+
 
 
 .wrapper{
@@ -77,8 +80,7 @@ a .float-note:hover{
   list-style: none;
   border-radius: 20px;
   padding: 15px 20px 20px;
-  background:rgba(122, 120, 120, 0.10);
-  box-shadow: 0 4px 8px rgba(0, 0, 0);
+  background-color: #38353a6a;
 }
 .add-box, .icon, .bottom-content, 
 .popup, header, .settings .menu li{
@@ -101,7 +103,7 @@ a .float-note:hover{
   border-radius: 50%;
   justify-content: center;
   border: 2px dashed #ffffff;
-  background-color: rgba(73, 69, 69, 0.4);
+  background-color: transparent;
 }
 .add-box p{
   color: #ffffff;
@@ -167,7 +169,7 @@ a .float-note:hover{
   bottom: 0;
   right: -5px;
   padding: 15px 0;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgb(37, 37, 37);
   position: absolute;
   border-radius: 1rem;
   transform: scale(0);
@@ -183,7 +185,7 @@ a .float-note:hover{
   font-size: 16px;
   margin-bottom: 2px;
   padding: 17px 15px;
-  background: rgba(0, 0, 0, 0.582);
+  background:transparent;
   cursor: pointer;
   box-shadow: none;
   border-radius: 0;
@@ -193,11 +195,12 @@ a .float-note:hover{
   margin-bottom: 0;
 }
 .menu li:hover{
-  background: rgba(255, 0, 0);
+  background: rgb(78, 83, 83);
 }
 .menu li i{
   padding-right: 8px;
 }
+
 .popup-box{
   position: fixed;
   top: 0;
