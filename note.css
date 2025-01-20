@@ -6,42 +6,133 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
-  min-height: 100vh;
-  background-image: linear-gradient(to top, #170029, #090013, rgb(0, 6, 33));
-  background-attachment: fixed;
-  font-size: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;;
-  color: var(--white);
-  line-height: 1.5;
-  overflow-x: hidden;
-  -webkit-top-highlight-color: transparent;
-  padding: 2.5vh 5vh;
-  color: white;
-  height: 37rem;
-}
 
 ::selection{
-  color: #fff;
-  background: #ff0000;
+    color: #fff;
+    background: #ff0000;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background-color: rgba(134, 134, 134, 0.539);
+    border-radius: 20px;
+  }
+  
+  *{padding:0;margin:0;}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  background-image: linear-gradient(to top, #170029, #090013, rgb(0, 6, 33));
+  background-attachment: fixed;
+    color: white;
 }
 
-::-webkit-scrollbar-thumb{
-  background-color: rgba(134, 134, 134, 0.539);
-  border-radius: 20px;
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #38353a6a;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-*{padding:0;margin:0;}
-
-body{
-	font-family:Verdana, Geneva, sans-serif;
-	font-size:18px;
-	background-color:rgb(255, 255, 255);
+h1 {
+    text-align: center;
+    color: #5a5a5a;
 }
 
+.note-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.note-input input {
+    padding: 10px;
+    border-style: none;
+    background-color: #38353a6a;
+    border-radius: 8px;
+    color: white;
+}
 
+.note-input button {
+    padding: 10px 15px;
+    background-color: rgba(154, 149, 149, 0.671);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.note-input button:hover {
+    background-color: white;
+    color: black;
+}
+
+.notes {
+    /*list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;*/
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    background-color: #38353a6a;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.note h3 {
+    margin: 0 0 5px 0;
+}
+
+.note span {
+    margin-bottom: 10px;
+}
+
+.note-buttons {
+    display: flex;
+    gap: 10px;
+    align-self: flex-end;
+}
+
+.note button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.note .edit {
+    background-color: #474448b6;
+    padding: 0 22px;
+    color: white;
+}
+
+.note .edit:hover {
+    background-color: white;
+    color: #000;
+}
+
+.note .delete {
+    background-color: #474448b6;
+    color: white;
+}
+
+.note .delete:hover {
+    background-color: #d32f2f;
+}
 
 .float-note{
 	position:fixed;
@@ -66,266 +157,22 @@ body{
   border: 1px solid aqua;
 }
 
-
-
-
-.wrapper{
-  margin: 50px;
-  display: grid;
-  gap: 25px;
-  grid-template-columns: repeat(auto-fill, 265px);
-}
-.wrapper li{
-  height: 250px;
-  list-style: none;
-  border-radius: 20px;
-  padding: 15px 20px 20px;
-  background-color: #38353a6a;
-}
-.add-box, .icon, .bottom-content, 
-.popup, header, .settings .menu li{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-    background-color: rgba(73, 73, 73, 0.637);
-}
-.add-box{
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(73, 69, 69, 0.4);
-}
-.add-box .icon{
-  height: 78px;
-  width: 78px;
-  color: #ffffff;
-  font-size: 40px;
-  border-radius: 50%;
-  justify-content: center;
-  border: 2px dashed #ffffff;
-  background-color: transparent;
-}
-.add-box p{
-  color: #ffffff;
-  font-weight: 500;
-  margin-top: 20px;
-}
-.note{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.note .details{
-  max-height: 165px;
-  overflow-y: auto;
-}
-.note .details::-webkit-scrollbar,
-.popup textarea::-webkit-scrollbar{
-  width: 0;
-}
-.note .details:hover::-webkit-scrollbar,
-.popup textarea:hover::-webkit-scrollbar{
-  width: 5px;
-}
-.note .details:hover::-webkit-scrollbar-track,
-.popup textarea:hover::-webkit-scrollbar-track{
-  background: #ffffff;
-  border-radius: 25px;
-}
-.note .details:hover::-webkit-scrollbar-thumb,
-.popup textarea:hover::-webkit-scrollbar-thumb{
-  background: #ff0000;
-  border-radius: 25px;
-}
-.note p{
-  font-size: 22px;
-  font-weight: 500;
-}
-.note span{
-  display: block;
-  color: #ffffff;
-  font-size: 16px;
-  margin-top: 5px;
-}
-.note .bottom-content{
-  padding-top: 10px;
-  border-top: 1px solid rgb(255, 255, 255);
-  background-color: rgba(220, 220, 220, 0);
-}
-.bottom-content span{
-  color: #ffffff;
-  font-size: 14px;
-}
-.bottom-content .settings{
-  position: relative;
-}
-.bottom-content .settings i{
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 15px;
-}
-.settings .menu{
-  z-index: 1;
-  bottom: 0;
-  right: -5px;
-  padding: 15px 0;
-  background-color: rgb(37, 37, 37);
-  position: absolute;
-  border-radius: 1rem;
-  transform: scale(0);
-  transform-origin: bottom right;
-  box-shadow: rgb(255, 255, 255);
-  transition: transform 0.2s ease;
-}
-.settings.show .menu{
-  transform: scale(1);
-}
-.settings .menu li{
-  height: 25px;
-  font-size: 16px;
-  margin-bottom: 2px;
-  padding: 17px 15px;
-  background:transparent;
-  cursor: pointer;
-  box-shadow: none;
-  border-radius: 0;
-  justify-content: flex-start;
-}
-.menu li:last-child{
-  margin-bottom: 0;
-}
-.menu li:hover{
-  background: rgb(78, 83, 83);
-}
-.menu li i{
-  padding-right: 8px;
-}
-
-.popup-box{
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  background: rgb(0, 0, 0);
-}
-.popup-box .popup{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  width: 100%;
-  max-width: 400px;
-  justify-content: center;
-  transform: translate(-50%, -50%) scale(0.95);
-}
-.popup-box, .popup{
-  opacity: 0;
-  pointer-events: none;
-  border-radius: 30px;
-  transition: all 0.25s ease;
-}
-.popup-box.show, .popup-box.show .popup{
-  opacity: 1;
-  pointer-events: auto;
-}
-.popup-box.show .popup{
-  transform: translate(-50%, -50%) scale(1);
-}
-.popup .content{
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0);
-  border-radius: 30px;
-  width: calc(100% - 15px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0);
-}
-.content header{
-  padding: 15px 25px;
-  border-bottom: 1px solid #ccc;
-  background-color: #12022400;
-}
-.content header p{
-  font-size: 20px;
-  font-weight: 500;
-}
-.content header i{
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 23px;
-}
-.content form{
-  margin: 15px 25px 35px;
-}
-.content form .row{
-  margin-bottom: 20px;
-}
-form .row label{
-  font-size: 18px;
-  display: block;
-  margin-bottom: 6px;
-}
-form :where(input, textarea){
-  height: 50px;
-  width: 100%;
-  color: #fff;
-  outline: none;
-  font-size: 17px;
-  padding: 0 15px;
-  background: rgba(122, 120, 120, 0.10);
-  border-radius: 2px;
-  border: 1px solid rgb(122, 120, 120, 0.10);
-}
-form :where(input, textarea):focus{
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.11);
-}
-form .row textarea{
-  height: 150px;
-  resize: none;
-  padding: 8px 15px;
-}
-form button{
-  width: 100%;
-  height: 50px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 17px;
-  border-radius: 60px;
-  background: #ff0000;
-}
-@media (max-width: 660px){
-  .wrapper{
-    margin: 15px;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, 100%);
-  }
-  .popup-box .popup{
-    max-width: calc(100% - 15px);
-  }
-  .bottom-content .settings i{
-    font-size: 17px;
-  }
-}
-
-
 footer {
-  text-align: center;
-  padding: 3px;
-  color: white;
-  position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-}
-
-footer span{
-  color: aqua;
-}
-
-.credit{
-  text-align: center;
-  padding: 9px;
-  background-color: #000000;
-}
+    text-align: center;
+    padding: 3px;
+    color: white;
+    position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+  }
+  
+  footer span{
+    color: aqua;
+  }
+  
+  .credit{
+    text-align: center;
+    padding: 9px;
+    background-color: #000000;
+  }
