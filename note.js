@@ -93,8 +93,3 @@ addBtn.addEventListener("click", e => {
         closeIcon.click();
     }
 });
-
-  // Automatically set target="_blank" on all <a> tags
-  document.querySelectorAll("a").forEach((link) => {
-      link.setAttribute("target", "_blank");
-  });
