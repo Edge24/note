@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 90%;
     margin: 50px auto;
     background-color: #38353a6a;
     padding: 40px;
@@ -82,7 +82,7 @@ h1 {
     flex-direction: column;*/
     gap: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .note {
