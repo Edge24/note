@@ -84,11 +84,6 @@
             editButton.className = 'edit';
             editButton.onclick = function () {
                 const newText = prompt('Edit your note:', span.textContent);
-                const newTitle = prompt('Edit your title:', h3.textContent);
-                
-                if (newTitle !== null) {
-                    h3.textContent = newTitle;
-                }
                 if (newText !== null) {
                     span.textContent = newText;
                 }
@@ -111,7 +106,7 @@
 
         document.addEventListener('DOMContentLoaded', loadNotes);
     </script>
-
+    
     <script>
   // Automatically set target="_blank" on all <a> tags
   document.querySelectorAll("a").forEach((link) => {
