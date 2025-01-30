@@ -1,118 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
     <title>Notes App | Created by Aritra Bera</title>
     <link rel="icon" type="image/x-icon" href="img/Note pic.png">
-    <link rel="stylesheet" href="note.css">
-</head>
-<body>
-    <div class="container">
-        <!--h1>Note App</h1-->
-<!--marquee style="margin-top: 38px; font-size: 25px; color: white; word-spacing: 8px; font-family: cursive; padding-bottom: 40px; margin-left: 55px;">🟠⚪🟢 Happy Republic Day | India will celebrate its 76th Republic Day on January 26, 2025 🟠⚪🟢</marquee-->
-        <div class="note-input">
-            <input type="text" id="noteTitle" placeholder="Enter title here...">
-            <input type="text" id="noteText" placeholder="Enter your note here...">
-            <button onclick="addNote()">Add new note</button>
-        </div>
-        <ul class="notes" id="noteList"></ul>
-    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom right, #1b1346, #000406, #000406, #000600, #1b153e);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .wrapper {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        width: 80%;
+        max-width: 1000px;
+      }
+      .note {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s;
+      }
+      .note:hover {
+        transform: scale(1.05);
+      }
+      .note h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+      .note p {
+        margin: 0;
+        font-size: 1rem;
+      }
+      .note .actions {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: flex;
+        gap: 5px;
+      }
+      .note button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+      .add-box {
+        background: #5a5455;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: center;
+        transition: background 0.3s;
+        border: none;
+        margin-bottom: 20px;
+      }
+      .add-box:hover {
+        background: #0ca35d;
+      }
+      .popup-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .popup {
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        background: rgba(89, 131, 83, 0.09);
+        backdrop-filter: blur( 4px );
+        color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        width: 320px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        transition: all 0.3s ease-in-out;
+      }
+      .popup.show {
+        display: flex;
+        transform: scale(1);
+      }
+      .popup header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .popup input, .popup textarea {
+        width: 95%;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        background-color: transparent;
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+      }
 
-    <footer>
-        <div class="credit">Created by <span>Aritra Bera</span> | Varsion 2.1</div>
-      </footer>
-  
-      <a class="float-note"
-          href="https://edge24.github.io/Macro/">
-          <img src="img/logo.png" alt="" style="height: 100%;">
-      </a>
+      .popup input:hover{
+        border: 1px solid cyan;
+      }
 
-    <script>
-        function loadNotes() {
-            const notes = JSON.parse(localStorage.getItem('notes')) || [];
-            const noteList = document.getElementById('noteList');
-            noteList.innerHTML = '';
-            notes.forEach(note => {
-                addNoteToDOM(note.title, note.text);
-            });
-        }
+      .popup textarea:hover{
+        border: 1px solid cyan;
+      }
 
-        function saveNotes() {
-            const notes = [];
-            document.querySelectorAll('.note').forEach(note => {
-                const title = note.querySelector('h3').textContent;
-                const text = note.querySelector('span').textContent;
-                notes.push({ title, text });
-            });
-            localStorage.setItem('notes', JSON.stringify(notes));
-        }
+      .popup button {
+        width: 100%;
+        padding: 10px;
+        background: rgb(78, 75, 75);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+      .popup button:hover {
+        background: red;
+        color: white;
+      }
 
-        function addNote() {
-            const noteTitle = document.getElementById('noteTitle').value;
-            const noteText = document.getElementById('noteText').value;
+      .popup label{
+        color: cyan;
+      }
 
-            if (noteTitle.trim() === '' || noteText.trim() === '') {
-                alert('Both title and note cannot be empty!');
-                return;
-            }
+      footer {
+  text-align: center;
+  padding: 3px;
+  color: white;
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+}
 
-            addNoteToDOM(noteTitle, noteText);
-            saveNotes();
+footer span{
+  color: aqua;
+}
 
-            document.getElementById('noteTitle').value = '';
-            document.getElementById('noteText').value = '';
-        }
+.credit{
+  text-align: center;
+  padding: 9px;
+  background-color: transparent;
+}
 
-        function addNoteToDOM(title, text) {
-            const noteList = document.getElementById('noteList');
-            const li = document.createElement('li');
-            li.className = 'note';
-
-            const h3 = document.createElement('h3');
-            h3.textContent = title;
-            li.appendChild(h3);
-
-            const span = document.createElement('span');
-            span.textContent = text;
-            li.appendChild(span);
-
-            const buttonContainer = document.createElement('div');
-            buttonContainer.className = 'note-buttons';
-
-            const editButton = document.createElement('button');
-            editButton.textContent = 'Edit';
-            editButton.className = 'edit';
-            editButton.onclick = function () {
-                const newText = prompt('Edit your note:', span.textContent);
-                if (newText !== null) {
-                    span.textContent = newText;
-                }
-                saveNotes();
-            };
-            buttonContainer.appendChild(editButton);
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete';
-            deleteButton.onclick = function () {
-                noteList.removeChild(li);
-                saveNotes();
-            };
-            buttonContainer.appendChild(deleteButton);
-
-            li.appendChild(buttonContainer);
-            noteList.appendChild(li);
-        }
-
-        document.addEventListener('DOMContentLoaded', loadNotes);
-    </script>
+    </style>
+  </head>
+  <body>
     
+    <button class="add-box">Add new note</button>
+    <div class="wrapper" id="notes-container"></div>
+    <div class="popup-box">
+        <div class="popup">
+          <header>
+            <p>Add/Edit Note</p>
+            <!--i class="uil uil-times close-popup"></i-->
+          </header>
+          <form id="note-form">
+            <label>Title</label>
+            <input type="text" id="title" required>
+            <label>Description</label>
+            <textarea id="description" required></textarea>
+            <button type="submit">Save Note</button>
+          </form>
+        </div>
+      </div>
+
+      <footer>
+        <div class="credit">Created by <span>Aritra Bera</span> | Version 1.2</div>
+      </footer>
+
     <script>
-  // Automatically set target="_blank" on all <a> tags
-  document.querySelectorAll("a").forEach((link) => {
-      link.setAttribute("target", "_blank");
-  });
-</script>
-</body>
+      const notesContainer = document.getElementById("notes-container");
+      const popupBox = document.querySelector(".popup-box");
+      const noteForm = document.getElementById("note-form");
+      let notes = JSON.parse(localStorage.getItem("notes")) || [];
+      function renderNotes() {
+        notesContainer.innerHTML = "";
+        notes.forEach((note, index) => {
+          const noteElement = document.createElement("div");
+          noteElement.classList.add("note");
+          noteElement.innerHTML = `
+            <h3>${note.title}</h3>
+            <p>${note.description}</p>
+            <div class="actions">
+              <button onclick="editNote(${index})">✏️</button>
+              <button onclick="deleteNote(${index})">🗑️</button>
+            </div>
+          `;
+          notesContainer.appendChild(noteElement);
+        });
+        localStorage.setItem("notes", JSON.stringify(notes));
+      }
+      function addNote(title, description) {
+        notes.push({ title, description });
+        renderNotes();
+      }
+      function editNote(index) {
+        document.getElementById("title").value = notes[index].title;
+        document.getElementById("description").value = notes[index].description;
+        popupBox.style.display = "flex";
+        noteForm.onsubmit = (e) => {
+          e.preventDefault();
+          notes[index] = {
+            title: document.getElementById("title").value,
+            description: document.getElementById("description").value
+          };
+          renderNotes();
+          popupBox.style.display = "none";
+        };
+      }
+      function deleteNote(index) {
+        notes.splice(index, 1);
+        renderNotes();
+      }
+      document.querySelector(".add-box").addEventListener("click", () => {
+        popupBox.style.display = "flex";
+        noteForm.onsubmit = (e) => {
+          e.preventDefault();
+          addNote(document.getElementById("title").value, document.getElementById("description").value);
+          popupBox.style.display = "none";
+        };
+      });
+      renderNotes();
+    </script>
+  </body>
 </html>
